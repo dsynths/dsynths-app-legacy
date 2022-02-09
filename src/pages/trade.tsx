@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Trade as TradeComponent } from 'components/App/Trade'
-import { Banner } from 'components/Banner'
+import { Banner, XDaiBanner } from 'components/Banner'
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +22,7 @@ export default function Trade() {
   return (
     <Container>
       <Banner />
+      <XDaiBanner />
       <TradeComponent />
     </Container>
   )

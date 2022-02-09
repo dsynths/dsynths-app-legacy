@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Portfolio as PortfolioList } from 'components/App/Portfolio'
-import { Banner } from 'components/Banner'
+import { Banner, XDaiBanner } from 'components/Banner'
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +22,7 @@ export default function Portfolio() {
   return (
     <Container>
       <Banner />
+      <XDaiBanner />
       <PortfolioList />
     </Container>
   )

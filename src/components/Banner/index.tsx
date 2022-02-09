@@ -1,3 +1,5 @@
+import { SupportedChainId } from 'constants/chains'
+import useWeb3React from 'hooks/useWeb3'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -8,6 +10,10 @@ const Wrapper = styled.div`
   padding: 1.25rem;
 `
 
+const XDAIWrapper = styled(Wrapper)`
+  background: ${({ theme }) => theme.red3};
+`
+
 export function Banner() {
   return (
     <Wrapper>
@@ -16,6 +22,28 @@ export function Banner() {
       <a href="https://www.dsynths.com" style={{ color: 'red', textDecoration: 'none' }}>
         our new app.
       </a>
+      <br />
+      <br />
+      Be warned: this site will remain up until June 2022. If you haven't closed your positions by then, you may lose
+      your money.
     </Wrapper>
   )
+}
+
+export function XDaiBanner() {
+  const { chainId } = useWeb3React()
+
+  return chainId === SupportedChainId.XDAI ? (
+    <XDAIWrapper>
+      Oh no! You are currently connected to xDAI chain, and this legacy version may experience issues with their RPC. If
+      you're unable to close your position or not seeing your correct balances, please visit{' '}
+      <a
+        href="https://superlegacy.dsynths.com/exchange/basic?network=xdai"
+        target="_blank"
+        style={{ color: 'yellow', textDecoration: 'none' }}
+      >
+        our super legacy app.
+      </a>
+    </XDAIWrapper>
+  ) : null
 }
