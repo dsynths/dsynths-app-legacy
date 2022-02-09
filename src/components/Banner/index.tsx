@@ -24,8 +24,8 @@ export function Banner() {
       </a>
       <br />
       <br />
-      Be warned: this site will remain up until June 2022. If you haven't closed your positions by then, you may lose
-      your money.
+      Be warned: this site will remain up until June 2022. If you haven&apos;t closed your positions by then, you may
+      lose your money.
     </Wrapper>
   )
 }
@@ -36,10 +36,11 @@ export function XDaiBanner() {
   return chainId === SupportedChainId.XDAI ? (
     <XDAIWrapper>
       Oh no! You are currently connected to xDAI chain, and this legacy version may experience issues with their RPC. If
-      you're unable to close your position or not seeing your correct balances, please visit{' '}
+      you&apos;re unable to close your position or not seeing your correct balances, please visit{' '}
       <a
         href="https://superlegacy.dsynths.com/exchange/basic?network=xdai"
         target="_blank"
+        rel="noreferrer"
         style={{ color: 'yellow', textDecoration: 'none' }}
       >
         our super legacy app.
