@@ -52,27 +52,31 @@ export default function useSynchronizer(
     async (baseURL) => {
       try {
         if (!chainId) throw new Error('No chainId present')
+        if (!checksummedAddress) throw new Error('address not checksummed')
+
         const networkName = ORACLE_NETWORK_NAMES[chainId]
         if (!networkName) throw new Error(`ChainId ${chainId} is not supported by the oracle`)
 
-        const { href: url } = new URL(`/${networkName}/signatures.json`, baseURL)
+        const { href: url } = new URL(`/v2/signature?address=${checksummedAddress}&network=${networkName}`, baseURL)
         return makeHttpRequest(url)
       } catch (err) {
         throw err
       }
     },
-    [chainId]
+    [chainId, checksummedAddress]
   )
 
   const fetchSignatures = useCallback(async () => {
     try {
       const responses = await Promise.allSettled(ORACLE_BASE_URL_MAP.map((url) => signatureRequest(url)))
-      const signatures = responses.map((response) => {
+      const signatures = responses.reduce((acc: Signatures[], response) => {
         if (response.status !== 'fulfilled') {
           throw new Error(`response.status returns unfulfilled: ${response}`)
         }
-        return response.value as Signatures
-      })
+        if (!response.value) return acc
+        acc.push(response.value as Signatures)
+        return acc
+      }, [])
       return signatures
     } catch (err) {
       throw err

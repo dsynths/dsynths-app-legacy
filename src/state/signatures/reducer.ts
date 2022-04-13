@@ -11,7 +11,11 @@ export enum SignaturesStatus {
 }
 
 export interface Signature {
+  blockNo: number
+  fee: number
   multiplier: number
+  price: string
+  index: number
   signs: {
     sell: {
       v: number
@@ -24,10 +28,6 @@ export interface Signature {
       s: string
     }
   }
-  price: string
-  fee: number
-  blockNo: number
-  index: number
 }
 
 export interface Signatures {

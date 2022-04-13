@@ -77,6 +77,7 @@ export default function useTradeCallback(
         r: rMapping,
         s: sMapping,
       }
+      console.log(args)
 
       const methodName = isProxyTrade ? 'sell' : 'sellFor'
       const value = isProxyTrade ? await Synchronizer.calculateXdaiAmount(price, args.fee, args.amount) : 0
